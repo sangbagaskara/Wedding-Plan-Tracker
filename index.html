@@ -208,6 +208,46 @@ tbody tr.chosen:hover{background:color-mix(in srgb,var(--accent) 10%,transparent
 .info-cell input{width:100%;background:var(--bg-soft);border:1px solid var(--border);padding:10px 12px;font-size:15px;font-weight:600;border-radius:var(--radius-sm)}
 .info-cell input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 14%,transparent)}
 
+/* ===== SESERAHAN / CINCIN / MAHAR ===== */
+.sgroup{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden}
+.sgroup-head{background:var(--bg-soft);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.sgroup-head .sg-title{display:flex;align-items:center;gap:10px}
+.sgroup-head .sg-title h3{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
+.sgroup-head .sg-title .sg-icon{display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;border-radius:50%;background:var(--grad);color:#fff;font-size:14px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.sgroup-head .sg-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-2);text-transform:uppercase;letter-spacing:.04em}
+.sgroup-head .sg-meta b{color:var(--accent)}
+.sg-progress{background:var(--surface-2);height:6px;position:relative;overflow:hidden}
+.sg-progress .sg-progress-fill{height:100%;background:var(--grad);transition:width .5s var(--ease)}
+
+/* checklist row */
+.s-row{display:grid;grid-template-columns:36px 1.4fr 90px 1.1fr 1.1fr 110px 90px;gap:10px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--border);font-size:13px;transition:background .15s var(--ease)}
+.s-row:last-child{border-bottom:none}
+.s-row:hover{background:var(--bg-soft)}
+.s-row.done{background:color-mix(in srgb,var(--good) 5%,transparent)}
+.s-row.done .s-name{text-decoration:line-through;color:var(--text-3)}
+.s-row .s-check{display:flex;justify-content:center}
+.s-row .s-check input{width:20px;height:20px;cursor:pointer;accent-color:var(--good)}
+.s-row .s-name{font-weight:600;color:var(--ink)}
+.s-row .s-name .s-sub{display:block;font-size:11px;font-weight:500;color:var(--text-3);margin-top:2px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.03em}
+.s-row .s-qty{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-2);text-align:right}
+.s-row .s-budget,.s-row .s-actual{font-family:'JetBrains Mono',monospace;font-size:12px;text-align:right}
+.s-row .s-actual.over{color:var(--bad);font-weight:700}
+.s-row .s-actual.under{color:var(--good);font-weight:700}
+.s-row .s-status{font-size:11px}
+.s-row .s-act{display:flex;gap:4px;justify-content:flex-end}
+
+/* table-style header for s-row */
+.s-row-head{display:grid;grid-template-columns:36px 1.4fr 90px 1.1fr 1.1fr 110px 90px;gap:10px;padding:10px 16px;background:var(--surface-2);border-bottom:1px solid var(--border);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);font-family:'JetBrains Mono',monospace}
+.s-row-head>div:nth-child(3),.s-row-head>div:nth-child(4),.s-row-head>div:nth-child(5){text-align:right}
+
+@media (max-width:760px){
+  .s-row,.s-row-head{grid-template-columns:32px 1fr 70px 100px;gap:8px;padding:11px 12px}
+  .s-row-head>div:nth-child(5),.s-row-head>div:nth-child(6),.s-row-head>div:nth-child(7){display:none}
+  .s-row>div:nth-child(5),.s-row>div:nth-child(6),.s-row>div:nth-child(7){display:none}
+  .s-row .s-mobile-meta{display:block;font-size:11px;color:var(--text-3);font-family:'JetBrains Mono',monospace;margin-top:4px;letter-spacing:.03em}
+}
+.s-mobile-meta{display:none}
+
 /* empty */
 .empty{padding:48px 16px;text-align:center;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);font-weight:600}
 
@@ -270,7 +310,8 @@ body.printing main>.view,body.printing nav,body.printing header,body.printing fo
     <button class="tab-btn" data-view="chosen"><span class="idx mono">03</span>TERPILIH</button>
     <button class="tab-btn" data-view="budget"><span class="idx mono">04</span>BUDGET</button>
     <button class="tab-btn" data-view="guests"><span class="idx mono">05</span>TAMU</button>
-    <button class="tab-btn" data-view="info"><span class="idx mono">06</span>INFO &amp; SYNC</button>
+    <button class="tab-btn" data-view="seserahan"><span class="idx mono">06</span>SESERAHAN</button>
+    <button class="tab-btn" data-view="info"><span class="idx mono">07</span>INFO &amp; SYNC</button>
   </nav>
 </header>
 
@@ -378,7 +419,32 @@ body.printing main>.view,body.printing nav,body.printing header,body.printing fo
     </div>
   </section>
 
-  <!-- ===== 06 INFO & SYNC ===== -->
+  <!-- ===== 06 SESERAHAN / CINCIN / MAHAR ===== -->
+  <section class="view" id="view-seserahan">
+    <div class="section-head">
+      <h2>SESERAHAN, CINCIN &amp; MAHAR</h2>
+      <span class="tag mono">// CHECKLIST PERSIAPAN</span>
+    </div>
+    <div class="kpi-grid" id="seserahanKpi"></div>
+    <div class="toolbar">
+      <input type="text" id="sSearch" placeholder="CARI ITEM / SUB-KATEGORI...">
+      <select id="sCatFilter">
+        <option value="">SEMUA KATEGORI</option>
+        <option value="Seserahan">SESERAHAN</option>
+        <option value="Cincin">CINCIN</option>
+        <option value="Mahar">MAHAR</option>
+      </select>
+      <select id="sStatusFilter">
+        <option value="">SEMUA STATUS</option>
+        <option value="done">✓ SUDAH SIAP</option>
+        <option value="pending">○ BELUM SIAP</option>
+      </select>
+      <button class="btn red" id="addSeserahanBtn">+ TAMBAH ITEM</button>
+    </div>
+    <div id="seserahanList"></div>
+  </section>
+
+  <!-- ===== 07 INFO & SYNC ===== -->
   <section class="view" id="view-info">
     <div class="section-head">
       <h2>INFO &amp; SYNC</h2>
@@ -496,6 +562,71 @@ body.printing main>.view,body.printing nav,body.printing header,body.printing fo
 
 <div id="toast"></div>
 
+<div class="modal-bg" id="seserahanModal">
+  <div class="modal">
+    <div class="modal-head"><h3 id="sModalTitle">[ TAMBAH ITEM ]</h3><button class="x" data-close>&times;</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="sId">
+      <div class="field-row">
+        <div class="field"><label>KATEGORI</label>
+          <select id="sCategory">
+            <option value="Seserahan">Seserahan</option>
+            <option value="Cincin">Cincin</option>
+            <option value="Mahar">Mahar</option>
+          </select>
+        </div>
+        <div class="field"><label>SUB-KATEGORI</label>
+          <input list="subCatList" id="sSubCategory" placeholder="PAKAIAN / KOSMETIK / BUAH...">
+          <datalist id="subCatList">
+            <option>Pakaian</option><option>Kosmetik &amp; Skincare</option><option>Sepatu &amp; Tas</option>
+            <option>Alat Sholat</option><option>Perhiasan</option><option>Buah</option>
+            <option>Kue &amp; Jajan</option><option>Perlengkapan Mandi</option><option>Sirih Ayu</option>
+            <option>Cincin Tunangan</option><option>Cincin Nikah Pria</option><option>Cincin Nikah Wanita</option>
+            <option>Uang Mahar</option><option>Emas / Logam Mulia</option><option>Seperangkat Alat Sholat</option>
+          </datalist>
+        </div>
+      </div>
+      <div class="field"><label>NAMA ITEM</label><input type="text" id="sName" placeholder="Mukena premium / Buah Apel / Cincin emas 5gr..."></div>
+      <div class="field-row">
+        <div class="field"><label>JUMLAH</label><input type="number" id="sQty" value="1" min="0" step="any"></div>
+        <div class="field"><label>SATUAN</label>
+          <input list="unitList" id="sUnit" placeholder="pcs / set / box / gram">
+          <datalist id="unitList">
+            <option>pcs</option><option>set</option><option>box</option><option>pasang</option>
+            <option>kg</option><option>gram</option><option>paket</option><option>lembar</option><option>tray</option>
+          </datalist>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>BUDGET (RP)</label><input type="number" id="sBudget" placeholder="0"></div>
+        <div class="field"><label>AKTUAL (RP)</label><input type="number" id="sActual" placeholder="0"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>STATUS</label>
+          <input list="sStatusList" id="sStatus" placeholder="BELUM BELI / SUDAH BELI / SIAP">
+          <datalist id="sStatusList">
+            <option>Belum Beli</option><option>Riset Harga</option><option>Sudah Beli</option>
+            <option>Sudah Siap</option><option>Sudah Dikemas</option>
+          </datalist>
+        </div>
+        <div class="field"><label>PIC / PJ</label>
+          <input list="picList" id="sPic" placeholder="RISANG / MAUREN / IBU...">
+          <datalist id="picList">
+            <option>Risang</option><option>Mauren</option><option>Ibu Risang</option>
+            <option>Ibu Mauren</option><option>Bersama</option>
+          </datalist>
+        </div>
+      </div>
+      <div class="field check"><input type="checkbox" id="sDone"><label>✓ SUDAH SIAP / TUNTAS</label></div>
+      <div class="field"><label>KETERANGAN</label><textarea id="sNotes" placeholder="Catatan tambahan..."></textarea></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn red" id="saveSeserahanBtn">SIMPAN</button>
+      <button class="btn ghost" data-close>BATAL</button>
+    </div>
+  </div>
+</div>
+
 <!-- ===== PRINT REPORT (full comprehensive) ===== -->
 <div id="printReport"></div>
 
@@ -512,7 +643,7 @@ const LS_URL = 'wedding_rm_gas_url';
    cukup ubah satu baris di bawah ini lalu deploy ulang HTML-nya. */
 const DEFAULT_GAS_URL = 'https://script.google.com/macros/s/AKfycbzJYu4P4tBEVfi8axtWH4ufnog_aDTtEBgJDcGdg6PL1LjSsnWUc7wK-GUgiyVVLTt53w/exec';
 
-let STATE = { meta:{}, vendors:[], guests:[] };
+let STATE = { meta:{}, vendors:[], guests:[], seserahan:[] };
 /* prioritas: override lokal (kalau user pernah ganti manual) > URL hardcode */
 let GAS_URL = localStorage.getItem(LS_URL) || DEFAULT_GAS_URL;
 
@@ -639,6 +770,37 @@ const SEED_GUESTS = [
   ['MUA (5 orang)','Nganjuk','Panitia & Supporting',5,0,'Tim Vendor','']
 ];
 
+/* SEED SESERAHAN — pernikahan Muslim Jawa, hantaran biasanya 7–11 nampan
+   Format: [category, subCategory, name, qty, unit, budget, actual, status, done, pic, notes] */
+const SEED_SESERAHAN = [
+  // ===== SESERAHAN (hantaran dari pihak pria) =====
+  ['Seserahan','Alat Sholat','Mukena premium + Sajadah',1,'set',500000,0,'Belum Beli',false,'Risang','Mukena bahan adem, sajadah motif lembut'],
+  ['Seserahan','Alat Sholat','Al-Qur\'an + Tasbih',1,'set',250000,0,'Belum Beli',false,'Risang','Al-Qur\'an cover elegan'],
+  ['Seserahan','Pakaian','Baju gamis / dress',2,'pcs',800000,0,'Belum Beli',false,'Risang','Diskusi model & warna dengan Mauren'],
+  ['Seserahan','Pakaian','Hijab set (pashmina, segi empat)',5,'pcs',300000,0,'Belum Beli',false,'Risang','Warna nude, pastel, dan formal'],
+  ['Seserahan','Pakaian','Pakaian dalam set',1,'set',400000,0,'Belum Beli',false,'Risang','Brand lokal, premium'],
+  ['Seserahan','Kosmetik & Skincare','Make-up set lengkap',1,'set',1000000,0,'Belum Beli',false,'Mauren','Brand favorit Mauren'],
+  ['Seserahan','Kosmetik & Skincare','Skincare set (cleanser–serum–moisturizer)',1,'set',700000,0,'Belum Beli',false,'Mauren','Sesuai jenis kulit'],
+  ['Seserahan','Kosmetik & Skincare','Parfum',1,'pcs',600000,0,'Belum Beli',false,'Risang','Female parfum 50ml+'],
+  ['Seserahan','Sepatu & Tas','Sepatu / heels',1,'pasang',500000,0,'Belum Beli',false,'Mauren','Cek size Mauren'],
+  ['Seserahan','Sepatu & Tas','Tas tangan / clutch',1,'pcs',500000,0,'Belum Beli',false,'Risang','Warna netral'],
+  ['Seserahan','Perlengkapan Mandi','Body care set (sabun, lotion, parfum)',1,'set',350000,0,'Belum Beli',false,'Risang','Premium brand'],
+  ['Seserahan','Buah','Buah segar (apel, anggur, jeruk, pir, naga)',5,'tray',500000,0,'Belum Beli',false,'Ibu Risang','Dikemas H-1, hantaran simbolis'],
+  ['Seserahan','Kue & Jajan','Kue tradisional Jawa (lapis, wajik, jenang)',1,'tray',400000,0,'Belum Beli',false,'Ibu Risang','Pesan ke catering lokal Nganjuk'],
+  ['Seserahan','Kue & Jajan','Kue modern / cake',1,'tray',350000,0,'Belum Beli',false,'Ibu Risang','Cake patisserie atau dessert box'],
+  ['Seserahan','Sirih Ayu','Sirih ayu / sirih pinang lengkap',1,'set',200000,0,'Belum Beli',false,'Ibu Risang','Hantaran simbol adat Jawa'],
+
+  // ===== CINCIN =====
+  ['Cincin','Cincin Tunangan','Cincin tunangan (engagement ring)',1,'pcs',5000000,0,'Belum Beli',false,'Bersama','Sudah dipakai saat lamaran — cek apakah perlu beli baru'],
+  ['Cincin','Cincin Nikah Pria','Cincin nikah Risang',1,'pcs',3500000,0,'Belum Beli',false,'Bersama','Cincin pria — pertimbangkan model simple, palladium/emas putih'],
+  ['Cincin','Cincin Nikah Wanita','Cincin nikah Mauren',1,'pcs',4500000,0,'Belum Beli',false,'Bersama','Cincin wanita — bisa ditambah aksen berlian'],
+
+  // ===== MAHAR =====
+  ['Mahar','Seperangkat Alat Sholat','Mukena + Sajadah + Al-Qur\'an (mahar)',1,'set',1000000,0,'Belum Beli',false,'Risang','Standar mahar pernikahan Muslim'],
+  ['Mahar','Uang Mahar','Uang tunai mahar (Rp 251.027)',1,'set',251027,0,'Belum Siap',false,'Risang','Angka simbolis tanggal nikah; siapkan uang baru'],
+  ['Mahar','Emas / Logam Mulia','Logam Mulia Antam 5 gram',5,'gram',6500000,0,'Belum Beli',false,'Risang','Cek harga emas terbaru di Pegadaian/Antam']
+];
+
 /* ---------- utils ---------- */
 const uid = () => 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,7);
 const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -682,11 +844,23 @@ function buildSeed(){
   return {
     meta: {...DEFAULT_META},
     vendors: SEED_VENDORS.map(r=>({id:uid(),category:r[0],name:r[1],priceSurvey:r[2],priceNego:r[3],priceFinal:r[4],contactPerson:r[5],phone:r[6],status:r[7],chosen:r[8],notes:r[9]})),
-    guests: SEED_GUESTS.map(r=>({id:uid(),name:r[0],origin:r[1],side:r[2],adults:r[3],kids:r[4],invType:r[5],notes:r[6]}))
+    guests: SEED_GUESTS.map(r=>({id:uid(),name:r[0],origin:r[1],side:r[2],adults:r[3],kids:r[4],invType:r[5],notes:r[6]})),
+    seserahan: SEED_SESERAHAN.map(r=>({id:uid(),category:r[0],subCategory:r[1],name:r[2],qty:r[3],unit:r[4],budget:r[5],actual:r[6],status:r[7],done:r[8],pic:r[9],notes:r[10]}))
   };
 }
 function loadLocal(){
-  try{ const raw=localStorage.getItem(LS_KEY); if(raw){ STATE=JSON.parse(raw); return true; } }catch(e){}
+  try{
+    const raw=localStorage.getItem(LS_KEY);
+    if(raw){
+      STATE=JSON.parse(raw);
+      // backward-compat: file lama tanpa seserahan → seed dari default
+      if(!Array.isArray(STATE.seserahan)){
+        STATE.seserahan = SEED_SESERAHAN.map(r=>({id:uid(),category:r[0],subCategory:r[1],name:r[2],qty:r[3],unit:r[4],budget:r[5],actual:r[6],status:r[7],done:r[8],pic:r[9],notes:r[10]}));
+        saveLocal();
+      }
+      return true;
+    }
+  }catch(e){}
   STATE=buildSeed(); saveLocal(); return false;
 }
 function saveLocal(){ localStorage.setItem(LS_KEY, JSON.stringify(STATE)); }
@@ -727,6 +901,16 @@ async function pullAll(){
       STATE.meta = {...DEFAULT_META, ...(d.meta||{})};
       STATE.vendors = (d.vendors||[]).map(v=>({...v, chosen:truthy(v.chosen)}));
       STATE.guests = (d.guests||[]);
+      // Defensive: kalau sheet seserahan di GAS belum ada / masih kosong,
+      // JANGAN wipe data lokal — pertahankan supaya tidak hilang sebelum
+      // sempat ter-push ke Sheets. Sheets baru jadi source of truth setelah
+      // ada minimal 1 baris di sana.
+      if(Array.isArray(d.seserahan) && d.seserahan.length > 0){
+        STATE.seserahan = d.seserahan.map(s=>({...s, done:truthy(s.done)}));
+      } else if(!Array.isArray(STATE.seserahan)){
+        STATE.seserahan = [];
+      }
+      // else: Sheets kosong tapi local punya data → keep local
       saveLocal(); renderAll();
       setSyncUI(true,'ONLINE / SYNCED · '+new Date().toLocaleTimeString('id-ID'));
       toast('Data tersinkron dari Sheets');
@@ -739,6 +923,7 @@ async function pushAll(){
   try{
     await gasPost({action:'bulkReplace',sheet:'vendors',rows:STATE.vendors});
     await gasPost({action:'bulkReplace',sheet:'guests',rows:STATE.guests});
+    await gasPost({action:'bulkReplace',sheet:'seserahan',rows:STATE.seserahan});
     await gasPost({action:'updateMeta',meta:STATE.meta});
     setSyncUI(true,'ONLINE / SYNCED · '+new Date().toLocaleTimeString('id-ID'));
     toast('Semua data terdorong ke Sheets');
@@ -750,7 +935,7 @@ async function pushAll(){
    ============================================================ */
 function renderAll(){
   renderHeader(); renderDashboard(); renderVendors(); renderChosen();
-  renderBudget(); renderGuests(); renderInfo(); refreshFilters();
+  renderBudget(); renderGuests(); renderSeserahan(); renderInfo(); refreshFilters();
 }
 
 function renderHeader(){
@@ -964,6 +1149,130 @@ function renderGuests(){
   </tr>`).join('');
 }
 
+/* ===== SESERAHAN aggregates & render ===== */
+function seserahanStats(){
+  const items = STATE.seserahan || [];
+  let totalItems=0, totalDone=0, totalBudget=0, totalActual=0;
+  const byCat = {Seserahan:{items:0,done:0,budget:0,actual:0}, Cincin:{items:0,done:0,budget:0,actual:0}, Mahar:{items:0,done:0,budget:0,actual:0}};
+  items.forEach(s=>{
+    totalItems++;
+    const b=num(s.budget), a=num(s.actual);
+    totalBudget+=b; totalActual+=a;
+    if(truthy(s.done)) totalDone++;
+    const cat = s.category && byCat[s.category] ? s.category : null;
+    if(cat){
+      byCat[cat].items++;
+      byCat[cat].budget+=b;
+      byCat[cat].actual+=a;
+      if(truthy(s.done)) byCat[cat].done++;
+    }
+  });
+  const pctDone = totalItems>0 ? Math.round(totalDone/totalItems*100) : 0;
+  return {totalItems,totalDone,totalBudget,totalActual,byCat,pctDone,remaining:totalItems-totalDone};
+}
+
+const SESERAHAN_CAT_META = {
+  Seserahan: {icon:'7', label:'SESERAHAN', desc:'Hantaran dari pihak mempelai pria'},
+  Cincin:    {icon:'◯', label:'CINCIN',    desc:'Cincin tunangan & nikah'},
+  Mahar:     {icon:'☪', label:'MAHAR',     desc:'Mas kawin wajib pernikahan'}
+};
+
+function renderSeserahan(){
+  const ss = seserahanStats();
+  const items = STATE.seserahan || [];
+
+  // KPI
+  const selisih = ss.totalBudget - ss.totalActual;
+  document.getElementById('seserahanKpi').innerHTML = `
+    ${kpi('TOTAL ITEM', ss.totalItems, ss.pctDone+'% TUNTAS', true)}
+    ${kpi('SUDAH SIAP', ss.totalDone, '✓ TUNTAS', false)}
+    ${kpi('BELUM SIAP', ss.remaining, '○ PENDING', false)}
+    ${kpi('TOTAL BUDGET', rpShort(ss.totalBudget), 'RENCANA', false)}
+    ${kpi('TOTAL AKTUAL', rpShort(ss.totalActual), 'REALISASI', true)}
+    ${kpi(selisih>=0?'SISA BUDGET':'OVER BUDGET', rpShort(Math.abs(selisih)), selisih>=0?'AMAN':'MELEBIHI', true)}
+  `;
+
+  // filters
+  const q = (document.getElementById('sSearch').value||'').toLowerCase();
+  const cf = document.getElementById('sCatFilter').value;
+  const sf = document.getElementById('sStatusFilter').value;
+
+  let filtered = items.filter(s=>{
+    if(cf && s.category!==cf) return false;
+    if(sf==='done' && !truthy(s.done)) return false;
+    if(sf==='pending' && truthy(s.done)) return false;
+    if(q){
+      const hay=((s.name||'')+' '+(s.subCategory||'')+' '+(s.notes||'')+' '+(s.pic||'')+' '+(s.status||'')).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  const container = document.getElementById('seserahanList');
+
+  if(filtered.length===0){
+    container.innerHTML = '<div class="sgroup"><div class="empty">TIDAK ADA ITEM YANG COCOK</div></div>';
+    return;
+  }
+
+  // grouping by category in order
+  const order = ['Seserahan','Cincin','Mahar'];
+  let html = '';
+  order.forEach(cat=>{
+    const catItems = filtered.filter(s=>s.category===cat);
+    if(catItems.length===0) return;
+    const catStat = ss.byCat[cat] || {items:0,done:0,budget:0,actual:0};
+    const pct = catStat.items>0 ? Math.round(catStat.done/catStat.items*100) : 0;
+    const m = SESERAHAN_CAT_META[cat] || {icon:'·',label:cat,desc:''};
+    html += `<div class="sgroup">
+      <div class="sgroup-head">
+        <div class="sg-title">
+          <span class="sg-icon">${m.icon}</span>
+          <div>
+            <h3>${m.label}</h3>
+            <div class="sg-meta" style="font-size:10px;letter-spacing:.05em;margin-top:2px">${esc(m.desc)}</div>
+          </div>
+        </div>
+        <div class="sg-meta">
+          <b>${catStat.done}</b> / ${catStat.items} ITEM · <b>${pct}%</b> · BUDGET <b>${rpShort(catStat.budget)}</b> · AKTUAL <b>${rpShort(catStat.actual)}</b>
+        </div>
+      </div>
+      <div class="sg-progress"><div class="sg-progress-fill" style="width:${pct}%"></div></div>
+      <div class="s-row-head">
+        <div>✓</div><div>ITEM</div><div>QTY</div><div>BUDGET</div><div>AKTUAL</div><div>STATUS</div><div>AKSI</div>
+      </div>`;
+
+    // group items by subCategory for visual grouping
+    catItems.forEach(s=>{
+      const done = truthy(s.done);
+      const budget = num(s.budget), actual = num(s.actual);
+      const actualClass = actual===0 ? '' : (actual>budget && budget>0 ? 'over' : (actual<=budget && budget>0 ? 'under' : ''));
+      const qtyStr = (s.qty || s.qty===0) ? (s.qty + ' ' + (s.unit||'')) : '—';
+      html += `<div class="s-row ${done?'done':''}">
+        <div class="s-check">
+          <input type="checkbox" ${done?'checked':''} onchange="toggleSeserahanDone('${s.id}')" title="Tandai sudah siap">
+        </div>
+        <div class="s-name">${esc(s.name||'(tanpa nama)')}
+          <span class="s-sub">${esc(s.subCategory||'—')} ${s.pic?'· PIC: '+esc(s.pic):''}</span>
+          <span class="s-mobile-meta">${esc(qtyStr)} · ${rp(budget)} → ${rp(actual)} · ${esc(s.status||'—')}</span>
+        </div>
+        <div class="s-qty">${esc(qtyStr)}</div>
+        <div class="s-budget">${rp(budget)}</div>
+        <div class="s-actual ${actualClass}">${rp(actual)}</div>
+        <div class="s-status"><span class="status-pill ${done?'go':''}">${esc(s.status||(done?'SIAP':'—'))}</span></div>
+        <div class="s-act">
+          <button class="mini-btn" onclick="editSeserahan('${s.id}')">EDIT</button>
+          <button class="mini-btn danger" onclick="delSeserahan('${s.id}')">×</button>
+        </div>
+      </div>`;
+    });
+
+    html += `</div>`;
+  });
+
+  container.innerHTML = html;
+}
+
 function renderInfo(){
   const m=STATE.meta;
   const fields=[
@@ -1105,6 +1414,72 @@ function delGuest(id){
   saveLocal(); renderAll(); toast('Tamu dihapus'); syncDelete('guests',id);
 }
 
+/* ===== seserahan CRUD ===== */
+function newSeserahan(){
+  document.getElementById('sModalTitle').textContent='[ TAMBAH ITEM SESERAHAN ]';
+  ['sId','sSubCategory','sName','sBudget','sActual','sStatus','sPic','sNotes'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('sCategory').value='Seserahan';
+  document.getElementById('sQty').value=1;
+  document.getElementById('sUnit').value='pcs';
+  document.getElementById('sStatus').value='Belum Beli';
+  document.getElementById('sDone').checked=false;
+  openModal('seserahanModal');
+}
+function editSeserahan(id){
+  const s=(STATE.seserahan||[]).find(x=>x.id===id); if(!s)return;
+  document.getElementById('sModalTitle').textContent='[ EDIT ITEM SESERAHAN ]';
+  document.getElementById('sId').value=s.id;
+  document.getElementById('sCategory').value=s.category||'Seserahan';
+  document.getElementById('sSubCategory').value=s.subCategory||'';
+  document.getElementById('sName').value=s.name||'';
+  document.getElementById('sQty').value=s.qty!=null?s.qty:1;
+  document.getElementById('sUnit').value=s.unit||'pcs';
+  document.getElementById('sBudget').value=num(s.budget)||'';
+  document.getElementById('sActual').value=num(s.actual)||'';
+  document.getElementById('sStatus').value=s.status||'';
+  document.getElementById('sPic').value=s.pic||'';
+  document.getElementById('sDone').checked=truthy(s.done);
+  document.getElementById('sNotes').value=s.notes||'';
+  openModal('seserahanModal');
+}
+function saveSeserahan(){
+  const id=document.getElementById('sId').value;
+  const name=document.getElementById('sName').value.trim();
+  if(!name){ toast('Nama item wajib diisi'); return; }
+  const row={
+    id:id||uid(),
+    category:document.getElementById('sCategory').value||'Seserahan',
+    subCategory:document.getElementById('sSubCategory').value.trim(),
+    name,
+    qty:num(document.getElementById('sQty').value),
+    unit:document.getElementById('sUnit').value.trim()||'pcs',
+    budget:num(document.getElementById('sBudget').value),
+    actual:num(document.getElementById('sActual').value),
+    status:document.getElementById('sStatus').value.trim(),
+    pic:document.getElementById('sPic').value.trim(),
+    done:document.getElementById('sDone').checked,
+    notes:document.getElementById('sNotes').value.trim()
+  };
+  if(!Array.isArray(STATE.seserahan)) STATE.seserahan=[];
+  const i=STATE.seserahan.findIndex(x=>x.id===row.id);
+  if(i>=0) STATE.seserahan[i]=row; else STATE.seserahan.push(row);
+  saveLocal(); renderAll(); closeModal('seserahanModal'); toast('Item disimpan');
+  syncUpsert('seserahan',row);
+}
+function delSeserahan(id){
+  if(!confirm('Hapus item ini?'))return;
+  STATE.seserahan=(STATE.seserahan||[]).filter(s=>s.id!==id);
+  saveLocal(); renderAll(); toast('Item dihapus'); syncDelete('seserahan',id);
+}
+function toggleSeserahanDone(id){
+  const s=(STATE.seserahan||[]).find(x=>x.id===id); if(!s)return;
+  s.done=!truthy(s.done);
+  // auto-update status saat dicentang
+  if(s.done && (!s.status || /belum|riset/i.test(s.status))) s.status='Sudah Siap';
+  saveLocal(); renderSeserahan(); toast(s.done?'✓ Ditandai SIAP':'○ Dibatalkan');
+  syncUpsert('seserahan',s);
+}
+
 /* meta */
 function saveInfo(){
   document.querySelectorAll('[data-meta]').forEach(inp=>{ STATE.meta[inp.dataset.meta]=inp.value; });
@@ -1127,6 +1502,14 @@ function exportCsv(){
   csv+='No,Nama,Asal,Pihak,Dewasa,Anak,Tipe,Keterangan\n';
   STATE.guests.forEach((g,i)=>{
     csv+=[i+1,g.name,g.origin,g.side,num(g.adults),num(g.kids),g.invType,g.notes]
+      .map(x=>`"${String(x==null?'':x).replace(/"/g,'""')}"`).join(',')+'\n';
+  });
+  // ===== seserahan / cincin / mahar =====
+  const ss = seserahanStats();
+  csv+='\n=== SESERAHAN / CINCIN / MAHAR ('+ss.totalDone+'/'+ss.totalItems+' siap · '+ss.pctDone+'%) ===\n';
+  csv+='Kategori,Sub-Kategori,Nama,Qty,Satuan,Budget,Aktual,Status,PIC,Sudah Siap,Keterangan\n';
+  (STATE.seserahan||[]).forEach(s=>{
+    csv+=[s.category,s.subCategory,s.name,num(s.qty),s.unit,num(s.budget),num(s.actual),s.status,s.pic,truthy(s.done)?'YA':'',s.notes]
       .map(x=>`"${String(x==null?'':x).replace(/"/g,'""')}"`).join(',')+'\n';
   });
   const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
@@ -1169,6 +1552,7 @@ function buildPrintReport(){
     ${prow('GRAND TOTAL + Buffer',rp(t.grand))}
     ${prow('Budget Target',rp(t.est))}
     ${prow('Status vs Budget',t.est>0?(Math.round(t.eff/t.est*100)+'% terpakai · '+(t.grand<=t.est?'DALAM BUDGET':'MELEBIHI BUDGET')):'—')}
+    ${(function(){const ss=seserahanStats();return prow('Seserahan/Cincin/Mahar', ss.totalDone+'/'+ss.totalItems+' siap ('+ss.pctDone+'%) · Aktual '+rp(ss.totalActual)+' dari budget '+rp(ss.totalBudget));})()}
   </table>`;
 
   // section: vendor terpilih
@@ -1206,6 +1590,36 @@ function buildPrintReport(){
     </tr></table>`;
   html+=ptableNum(['#','NAMA','ASAL','PIHAK','DWS','ANK','TIPE','KET'],
     STATE.guests.map((g,i)=>[i+1,g.name,g.origin,g.side,num(g.adults),num(g.kids),g.invType,g.notes]));
+
+  // section: SESERAHAN / CINCIN / MAHAR
+  const ss = seserahanStats();
+  html+=sectTitle('06 // SESERAHAN, CINCIN &amp; MAHAR ('+ss.totalDone+'/'+ss.totalItems+' SIAP · '+ss.pctDone+'%)');
+  html+=`<table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:8px">
+    <tr style="background:#f6f7fb">
+      <td style="padding:5px 8px;border:1px solid #e8ebf4;font-family:'JetBrains Mono',monospace;font-size:10px">SESERAHAN: <b>${ss.byCat.Seserahan.done}/${ss.byCat.Seserahan.items}</b> · ${rp(ss.byCat.Seserahan.actual)} / ${rp(ss.byCat.Seserahan.budget)}</td>
+      <td style="padding:5px 8px;border:1px solid #e8ebf4;font-family:'JetBrains Mono',monospace;font-size:10px">CINCIN: <b>${ss.byCat.Cincin.done}/${ss.byCat.Cincin.items}</b> · ${rp(ss.byCat.Cincin.actual)} / ${rp(ss.byCat.Cincin.budget)}</td>
+      <td style="padding:5px 8px;border:1px solid #e8ebf4;font-family:'JetBrains Mono',monospace;font-size:10px">MAHAR: <b>${ss.byCat.Mahar.done}/${ss.byCat.Mahar.items}</b> · ${rp(ss.byCat.Mahar.actual)} / ${rp(ss.byCat.Mahar.budget)}</td>
+    </tr></table>`;
+  const ssRows = (STATE.seserahan||[]).slice().sort((a,b)=>{
+    const order={Seserahan:1,Cincin:2,Mahar:3};
+    return (order[a.category]||9)-(order[b.category]||9);
+  });
+  if(ssRows.length===0){
+    html+=`<p style="font-size:12px;margin-bottom:18px">Belum ada item seserahan.</p>`;
+  } else {
+    html+=ptable(['✓','KAT','SUB-KAT','ITEM','QTY','BUDGET','AKTUAL','STATUS','PIC'],
+      ssRows.map(s=>[
+        truthy(s.done)?'✓':'○',
+        s.category,
+        s.subCategory,
+        s.name,
+        (s.qty||'')+' '+(s.unit||''),
+        rp(s.budget),
+        rp(s.actual),
+        s.status||'',
+        s.pic||''
+      ]));
+  }
 
   html+=`<div style="border-top:2px solid #e8ebf4;margin-top:24px;padding-top:8px;font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.06em;display:flex;justify-content:space-between">
     <span>© 2027 RISANG &amp; MAUREN ® INTIMATE WEDDING</span><span>NGANJUK / JAWA TIMUR</span><span>END OF REPORT</span></div>`;
@@ -1274,6 +1688,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('gSideFilter').addEventListener('change',renderGuests);
   document.getElementById('gTypeFilter').addEventListener('change',renderGuests);
 
+  // seserahan
+  document.getElementById('addSeserahanBtn').addEventListener('click',newSeserahan);
+  document.getElementById('saveSeserahanBtn').addEventListener('click',saveSeserahan);
+  document.getElementById('sSearch').addEventListener('input',renderSeserahan);
+  document.getElementById('sCatFilter').addEventListener('change',renderSeserahan);
+  document.getElementById('sStatusFilter').addEventListener('change',renderSeserahan);
+
   // info
   document.getElementById('saveInfoBtn').addEventListener('click',saveInfo);
 
@@ -1303,7 +1724,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 
   // modal close
-  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>{closeModal('vendorModal');closeModal('guestModal');}));
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>{closeModal('vendorModal');closeModal('guestModal');closeModal('seserahanModal');}));
   document.querySelectorAll('.modal-bg').forEach(bg=>bg.addEventListener('click',e=>{ if(e.target===bg) bg.classList.remove('open'); }));
 });
 </script>
